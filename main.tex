@@ -1,0 +1,50 @@
+\documentclass{greyc}
+\graphicspath{ {fig/pdf/} }
+%*******************************************************************************
+% Title
+\title{Titre}
+\author{Prénom}{Nom}
+\director{Prénom}{Nom}
+\directorAd{Prénom}{Nom}
+\academy{Caen} 
+\university{Université de Caen}{Facult\'e des Sciences
+  Fondamentales et Appliqu\'ees}{Université de Caen}
+\doctoralschool{Informatique et Applications}{Sciences et Ingénierie
+  pour l'Information}
+\date{}
+%-------------------------------------------------------------------------------
+%Jury
+\addjuryrapport{Prénom Nom}{Titre}{Laboratoire}%
+\addjurydirth{Prénom Nom}{Titre}{Laboratoire}%
+\addjuryexam{Prénom Nom}{Titre}{Laboratoire}%
+\addjurypres{Prénom Nom}{Titre}{Laboratoire}%
+%*******************************************************************************
+\include{macro}
+%*******************************************************************************
+%*******************************************************************************
+\begin{document}
+\selectlanguage{french}
+\frontmatter
+\maketitle
+%Résumé
+\include{abstract}
+\tableofcontents
+\mainmatter
+%Titre chapitre 1
+\include{chapitre1}
+%Titre chapitre 2
+\include{chapitre2}
+%\appendix
+\backmatter
+%*******************************************************************************
+% Bibliographie
+\bibliographystyle{alpha-fr} %
+\renewcommand{\bibname}{Références Bibliographiques} %
+\bibliography{biblio} %
+%*******************************************************************************
+\include{backcover}
+%*******************************************************************************
+\end{document}
+%*******************************************************************************
+%*******************************************************************************
+
