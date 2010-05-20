@@ -21,6 +21,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{xcolor}
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
+\RequirePackage{nota}
 
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
@@ -83,3 +84,9 @@ colorlinks=false]{hyperref}
       {\small$\blacktriangleright$}{\footnotesize\sffamily\S\,\ref{#1}\,p.\,\pageref{#1}}
   }}
 }
+%-----------------------------------------------------------------------
+% configuration de l'environnement nota
+\newcommand{\ficnota}{nota}
+\setlength{\largeurnota}{.8cm}
+\newenvironment{nota}{%
+  \begin{pictonote}{\ficnota}}{\end{pictonote}}
