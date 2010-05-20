@@ -74,3 +74,12 @@ colorlinks=false]{hyperref}
 \fancyhead[RE]{\leftmark}
 \fancyfoot[LE,RO]{\thepage}
 
+%-----------------------------------------------------------------------
+%renvois
+\newcommand{\voir}[2]{%
+  #2{\tiny$\blacktriangleleft$}%
+  \marginpar{%
+    \parbox[t]{.9\marginparwidth}{%
+      {\small$\blacktriangleright$}{\footnotesize\sffamily\S\,\ref{#1}\,p.\,\pageref{#1}}
+  }}
+}
