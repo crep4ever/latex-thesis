@@ -1,14 +1,43 @@
-SRC := $(wildcard *.tex)
+######################################################################
+# Makefile
+#
+# Auteur : Romain Goffe
+#          Guillaume Née <guillaume.nee@greyc.ensicaen.fr>
+# Creation : 20 May 2010
+#
+# Fichier de configuration de la commande make
+#
+######################################################################
 
-SOURCES := $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
+######################## Option de lancement #########################
+#
+# Par défaut un appel à la commande make génèrera le pdf
+# ps : génére le manuscrit au format ps
+# pdf : génère le manuscrit au format pdf
+# clean : nettoyage des fichiers de backup
+# cleanps : nettoyage des fichiers servants à générer le .ps.gz
+# cleanpdf : nettoyage des fichiers servants à générer le pdf
+# cleanall : nettoyage complet des fichiers compilés et images générée
+#
+######################################################################
 
+######################## Dépendances #################################
+#
+# latex, pdflatex, inkscape, xfig, imagemagick(convert)
+#
+######################################################################
+
+SOURCES	:= $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 CIBLE = $(SOURCES:%.tex=%)
+AUX = $(SOURCES:%.tex=%.aux)
+BIBLIO := $(`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/; foreach $$b (@_) { print "$$b.bib "}'`) $(SOURCES)
+BIB = $(SOURCES:%.tex=%.bbl)
 
-PDF = $(CIBLE:%=%.pdf)
-PSF = $(CIBLE:%=%.ps.gz)
+# Figures directory
+FIG_DIR = fig
 
 # Sources for image files
-FIG_DIR = fig
+FIGSRC_DIR = $(FIG_DIR)/src
 
 # Destination directories for generated images
 EPS_DIR = $(FIG_DIR)/eps
@@ -16,139 +45,110 @@ PDF_DIR = $(FIG_DIR)/pdf
 TEX_DIR = $(FIG_DIR)/tex
 
 # Various sources files
-XFIGS  = $(wildcard $(FIG_DIR)/*.fig)
-IMAGES = $(wildcard $(FIG_DIR)/*.gif) $(wildcard $(FIG_DIR)/*.jpg) $(wildcard $(FIG_DIR)/*.eps) $(wildcard $(FIG_DIR)/*.pdf) $(wildcard $(FIG_DIR)/*.svg)
+XFIGS  = $(wildcard $(FIGSRC_DIR)/*.fig)
+IMAGES = $(wildcard $(FIGSRC_DIR)/*.gif) \
+	$(wildcard $(FIGSRC_DIR)/*.jpg) \
+	$(wildcard $(FIGSRC_DIR)/*.eps) \
+	$(wildcard $(FIGSRC_DIR)/*.pdf) \
+	$(wildcard $(FIGSRC_DIR)/*.svg)
 
-IMG_PNG = $(wildcard $(FIG_DIR)/*.png)
+IMG_PNG = $(wildcard $(FIGSRC_DIR)/*.png)
 
-IMG_EPS  = $(foreach file, $(XFIGS), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
-IMG_EPS += $(foreach file, $(IMAGES), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
-IMG_EPS += $(foreach file, $(IMG_PNG), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
+EPS  = $(foreach file, $(XFIGS), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
+EPS += $(foreach file, $(IMAGES), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
+EPS += $(foreach file, $(IMG_PNG), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
 
-IMG_PDF  = $(foreach file, $(XFIGS), $(PDF_DIR)/$(basename $(notdir $(file))).pdf)
-IMG_PDF += $(foreach file, $(IMAGES), $(PDF_DIR)/$(basename $(notdir $(file))).pdf)
-IMG_PDF += $(foreach file, $(IMG_PNG), $(PDF_DIR)/$(basename $(notdir $(file))).png)
+PDF  = $(foreach file, $(XFIGS), $(PDF_DIR)/$(basename $(notdir $(file))).pdf)
+PDF += $(foreach file, $(IMAGES), $(PDF_DIR)/$(basename $(notdir $(file))).pdf)
+PDF += $(foreach file, $(IMG_PNG), $(PDF_DIR)/$(basename $(notdir $(file))).png)
 
-IMG_TEX  = $(foreach file, $(XFIGS), $(TEX_DIR)/$(basename $(notdir $(file))).tex)
+TEX  = $(foreach file, $(XFIGS), $(TEX_DIR)/$(basename $(notdir $(file))).tex) 
+TEX += $(wildcard /*.tex)
 
-# Pogramms
-BIBTEX=bibtex
-ECHO=echo
-
-# Get dependencies (that can also have dependencies)
-define get_dependencies
-	deps=`perl -ne '($$_)=/^[^%]*\\\(?:include|input)\{(.*?)\}/;@_=split /,/; foreach $$t (@_) { print "$$t "}' $<`
-endef
-
-# Get related bibliographies
-define get_bibliographies
-	@$(get_dependencies) ; bibs=`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/; foreach $$b (@_) { print "$$b.bib "}' $< $$deps`
-endef
-
-# Get graphics files
-define get_pdf_graphics
-	@$(get_dependencies) ; graphics=`perl -ne '@foo=/^[^%]*\\\includegraphics(<.*>)?(\[.*?\])?\{(.*?)\}/;if (defined($$foo[2])) { if ( -e "$(FIG_DIR)/$$foo[2].png" ) { print "$(PDF_DIR)/$$foo[2].png "; } else { print "$(PDF_DIR)/$$foo[2].pdf "; }}' $< $$deps`
-endef
-define get_eps_graphics
-	@$(get_dependencies) ; graphics=`perl -ne '@foo=/^[^%]*\\\includegraphics(<.*>)?(\[.*?\])?\{(.*?)\}/;if (defined($$foo[2])) { print "$(EPS_DIR)/$$foo[2].eps "; }' $< $$deps`
-endef
 
 ############################################################
 ### Cibles
 
 default: pdf
 
-ps: $(PSF)
-	gv $<
+ps: LATEX = latex
+ps: $(CIBLE).ps.gz
+#	gv $<
 
-pdf: $(PDF)
-	evince $<
+pdf: LATEX = pdflatex
+pdf: $(CIBLE).pdf
+#	evince $<
 
 clean:
-	@rm -f $(SRC:%.tex=%.d)
-	@rm -f $(CIBLE:%=%.aux) 
-	@rm -f $(CIBLE:%=%.toc)
-	@rm -f $(CIBLE:%=%.out) 
-	@rm -f $(CIBLE:%=%.log) 
-	@rm -f $(CIBLE:%=%.nav) 
-	@rm -f $(CIBLE:%=%.snm)
-	@rm -f $(CIBLE:%=%.dvi)
-	@rm -f $(CIBLE:%=%.blg)
-	@rm -f $(CIBLE:%=%.bbl)
-	@rm -f thesis.bib
+	@rm -f $(AUX) $(CIBLE).toc
+	@rm -f $(CIBLE).dvi $(CIBLE).out $(CIBLE).log $(CIBLE).nav $(CIBLE).snm
+	@rm -f $(BIB) $(BIB:%.bbl=%.blg)
+	@rm -f *.aux *.log *.out
 
-cleanall: clean
-	@rm -f $(IMG_EPS) $(IMG_PDF) $(IMG_TEX)
-	@rm -f $(PDF) $(PSF)
+cleanps: clean
+	@rm -f $(EPS) $(TEX) $(CIBLE).ps.gz
 
-depend:
+cleanpdf: clean
+	@rm -f $(PDF) $(CIBLE).pdf
+
+cleanall: cleanps cleanpdf
 
 ############################################################
 
-# ps generation related rules
-$(PSF): LATEX=latex
+$(AUX): $(SOURCES)
+	$(LATEX) $(SOURCES)
 
-$(PSF): %.ps.gz: %.ps
-	gzip -f $<
+$(CIBLE).bbl: $(AUX) $(BIBLIO)
+	bibtex $(AUX:%.aux=%)
+	$(LATEX) $(SOURCES)
 
-%.ps: %.dvi
-	dvips -o $@ $<
+$(CIBLE).ps.gz: $(CIBLE).ps
+	gzip -f $(CIBLE).ps
 
-# pdf generation related rules
-$(PDF): LATEX=pdflatex
-$(PDF): %.pdf: %.tex %.aux
+$(CIBLE).ps: $(CIBLE).dvi
+	dvips $(CIBLE).dvi -o
 
-%.aux: %.tex
-	$(LATEX) $< 
+$(CIBLE).dvi: $(EPS) $(TEX) $(AUX) $(BIB)
+	$(LATEX) $(CIBLE).tex
 
-%.d: %.tex
-	@$(get_eps_graphics) ; $(ECHO) $(patsubst %.tex,%,$<)_EPS_GRAPHICS="$$graphics" > $@ 
-	@$(get_pdf_graphics) ; $(ECHO) $(patsubst %.tex,%,$<)_PDF_GRAPHICS="$$graphics" >> $@ 
-	@$(get_dependencies) ; $(ECHO) $< $@: $$deps >> $@
-	@$(get_dependencies) ; $(ECHO) $(patsubst %.tex,%.aux,$<): $$deps >> $@
-	@$(get_bibliographies) ; if [ "$$bibs" ]; then $(ECHO) $(patsubst %.tex,%.dvi,$<): $$\($(patsubst %.tex,%,$<)_EPS_GRAPHICS\) $(patsubst %.tex,%.aux,$<) $(patsubst %.tex,%.bbl,$<) >> $@ ; $(ECHO) "\t"$$\(LATEX\) $< >> $@ ; $(ECHO) $(patsubst %.tex,%.pdf,$<): $$\($(patsubst %.tex,%,$<)_PDF_GRAPHICS\) $(patsubst %.tex,%.aux,$<) $(patsubst %.tex,%.bbl,$<) >> $@ ; $(ECHO) "\t"$$\(LATEX\) $< >> $@ ; $(ECHO) $(patsubst %.tex,%.bbl,$<) :  $(patsubst %.tex,%.aux,$<) $$bibs >> $@ ; $(ECHO) "\t"$$\(BIBTEX\) $(patsubst %.tex,%,$<) >> $@ ; $(ECHO) "\t"$$\(LATEX\) $< >> $@ ; else $(ECHO) $(patsubst %.tex,%.dvi,$<): $$\($(patsubst %.tex,%,$<)_EPS_GRAPHICS\) $(patsubst %.tex,%.aux,$<) >> $@ ; $(ECHO) "\t"$$\(LATEX\) $< >> $@ ; $(ECHO) $(patsubst %.tex,%.pdf,$<): $$\($(patsubst %.tex,%,$<)_PDF_GRAPHICS\) $(patsubst %.tex,%.aux,$<) >> $@ ; $(ECHO) "\t"$$\(LATEX\) $< >> $@ ;fi;
+$(CIBLE).pdf: $(PDF) $(TEX) $(AUX) $(BIB)
+	$(LATEX) $(CIBLE).tex
 
-include $(SOURCES:%.tex=%.d)
-
-# figures related rules
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.fig
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.fig
 	fig2dev -L pstex $< $@
 
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.jpg
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.jpg
 	convert $< EPS:$@
 
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.png
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.png
 	convert $< EPS:$@
 
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.gif
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.gif
 	convert $< EPS:$@
 
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.eps
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.eps
 	cp $< $@
 
-$(EPS_DIR)/%.eps: $(FIG_DIR)/%.svg
+$(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.svg
 	inkscape $< --export-eps=$@
 
-$(PDF_DIR)/%.pdf: $(FIG_DIR)/%.fig
+$(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.fig
 	fig2dev -L pdftex $< $@
 
-$(PDF_DIR)/%.pdf: $(FIG_DIR)/%.jpg
+$(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.jpg
 	convert $< EPDF:$@
 
-$(PDF_DIR)/%.pdf: $(FIG_DIR)/%.eps
+$(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.eps
 	convert $< EPDF:$@
 
-$(PDF_DIR)/%.pdf: $(FIG_DIR)/%.pdf
+$(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.pdf
 	cp $< $@
 
-$(PDF_DIR)/%.pdf: $(FIG_DIR)/%.svg
+$(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.svg
 	inkscape $< --export-pdf=$@
 
-$(PDF_DIR)/%.png: $(FIG_DIR)/%.png
+$(PDF_DIR)/%.png: $(FIGSRC_DIR)/%.png
 	cp $< $@
 
-$(TEX_DIR)/%.tex: $(FIG_DIR)/%.fig
+$(TEX_DIR)/%.tex: $(FIGSRC_DIR)/%.fig
 	fig2dev -L pdftex_t -p $(*F) $< $@
-
-thesis.bib: 
-	cat `find bibtex -type f` > $@
