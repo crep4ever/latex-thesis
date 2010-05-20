@@ -1,5 +1,5 @@
 %=======================================================================
-% Fichier      : greycthesis.cls
+% Fichier      : thesis.cls
 % Title        : 
 % Auteur       : <guillaume.nee@greyc.ensicaen.fr>
 % Creation     : mer. mai 19, 2010  17:49 
@@ -7,7 +7,7 @@
 %=======================================================================
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{greycthesis}[2010/05/19]
+\ProvidesClass{thesis}[2010/05/19]
 
 \LoadClass[a4paper,twoside,12pt]{book}
 
@@ -17,15 +17,25 @@
 \RequirePackage[sectionbib]{natbib}
 \RequirePackage{chapterbib}
 \RequirePackage{makeidx} % pour l'index
-\RequirePackage[francais]{babel}
+\RequirePackage[english,frenchb]{babel}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{xcolor}
+\RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
+
+\definecolor{tango-green-1}{HTML}{8ae234}
+\definecolor{tango-green-3}{HTML}{4e9a06}
+\definecolor{tango-blue-3}{HTML}{204a87}
+\definecolor{tango-red-3}{HTML}{a40000}
 
 \ifpdf % moteur pdflatex
 \RequirePackage[pdftex,
 hyperindex=true,
 pdfpagelabels,
-colorlinks=true]{hyperref}
+bookmarks,
+bookmarksopen,
+colorlinks=true,
+linkcolor=tango-red-3,
+urlcolor=tango-blue-3]{hyperref}
 \else% moteur tex
 \RequirePackage[hypertex,
 hyperindex=false,
