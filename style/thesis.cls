@@ -1,7 +1,8 @@
 %=======================================================================
 % Fichier      : thesis.cls
 % Title        : 
-% Auteur       : <guillaume.nee@greyc.ensicaen.fr>
+% Auteurs      : ``Guillaume Nee <guillaume.nee@greyc.ensicaen.fr>'', 
+%                ``Romain Goffe <romain.goffe@gmail.com>''
 % Creation     : mer. mai 19, 2010  17:49 
 % Modification : 
 %=======================================================================
@@ -81,7 +82,7 @@ colorlinks=false]{hyperref}
   #2{\tiny$\blacktriangleleft$}%
   \marginpar{%
     \parbox[t]{.9\marginparwidth}{%
-      {\small$\blacktriangleright$}{\footnotesize\sffamily\S\,\ref{#1}\,p.\,\pageref{#1}}
+      {\small$\blacktriangleright$}{\footnotesize\sffamily\S\,\ref{#1}\,\\p.\,\pageref{#1}}
   }}
 }
 %-----------------------------------------------------------------------
