@@ -20,6 +20,7 @@
 \RequirePackage{makeidx} % pour l'index
 \RequirePackage[english,frenchb]{babel}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
 \RequirePackage{xcolor}
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
 \RequirePackage{nota}
