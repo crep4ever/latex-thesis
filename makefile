@@ -27,7 +27,7 @@
 #
 ######################################################################
 
-SOURCES	:= $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
+SOURCES	:= manuscrit.tex #$(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 CIBLE = $(SOURCES:%.tex=%)
 AUX = $(SOURCES:%.tex=%.aux)
 BIBLIO := $(`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/; foreach $$b (@_) { print "$$b.bib "}'`) $(SOURCES)
