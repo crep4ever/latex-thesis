@@ -1,4 +1,4 @@
-\makeatletter\def\input@path{{style/} {tex/}}\makeatother
+\makeatletter\def\input@path{{style/} {tex/} {bib/}}\makeatother
 \documentclass{thesis}
 \graphicspath{ {fig/pdf/} }
 %*******************************************************************************
@@ -20,28 +20,27 @@
 %\addjuryexam{Prénom Nom}{Titre}{Laboratoire}%
 %\addjurypres{Prénom Nom}{Titre}{Laboratoire}%
 %*******************************************************************************
-\include{macro}
-%*******************************************************************************
+\input{macro}
 %*******************************************************************************
 \begin{document}
 \selectlanguage{french}
 \frontmatter
 %\maketitle
 %Résumé
-%\include{abstract}
+%\input{abstract}
 \tableofcontents
 \mainmatter
-\include{chapitre1}
-%\include{chapitre2}
+%\input{chapitre1}
+%\input{chapitre2}
 %\appendix
 \backmatter
 %*******************************************************************************
 % Bibliographie
 \bibliographystyle{bib/alpha-fr} %
 \renewcommand{\bibname}{Références Bibliographiques} %
-\bibliography{biblio} %
+\bibliography{bib/biblio} %
 %*******************************************************************************
-%\include{backcover}
+%\input{backcover}
 %*******************************************************************************
 \end{document}
 %*******************************************************************************
