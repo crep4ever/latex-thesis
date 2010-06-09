@@ -52,9 +52,10 @@ colorlinks=false]{hyperref}
 \DeclareOption{nb}{\nbtrue}
 \ProcessOptions
 %-----------------------------------------------------------------------
-\ifnb
-\newcommand{\image}[2]{\IfFileExists{./grey/#2.pdf}{\includegraphics[width=#1]{./grey/#2}}{\includegraphics[width=#1]{./pdf/#2}}}%
-\else
+\ifnb%
+%\newcommand{\image}[2]{\IfFileExists{./grey/#2.pdf}{\includegraphics[width=#1]{./grey/#2}}{\includegraphics[width=#1]{./pdf/#2}}}%
+\newcommand{\image}[2]{\includegraphics[width=#1]{./grey/#2}}%
+\else%
 \newcommand{\image}[2]{\includegraphics[width=#1]{./pdf/#2}}
 \fi
 %-----------------------------------------------------------------------
