@@ -38,11 +38,13 @@ FIG_DIR = fig
 
 # Sources for image files
 FIGSRC_DIR = $(FIG_DIR)/src
+GREYSRC_DIR = $(FIG_DIR)/src/grey
 
 # Destination directories for generated images
 EPS_DIR = $(FIG_DIR)/eps
 PDF_DIR = $(FIG_DIR)/pdf
 TEX_DIR = $(FIG_DIR)/tex
+GREY_DIR = $(FIG_DIR)/grey
 
 # Various sources files
 XFIGS  = $(wildcard $(FIGSRC_DIR)/*.fig)
@@ -50,8 +52,9 @@ IMAGES = $(wildcard $(FIGSRC_DIR)/*.gif) \
 	$(wildcard $(FIGSRC_DIR)/*.jpg) \
 	$(wildcard $(FIGSRC_DIR)/*.eps) \
 	$(wildcard $(FIGSRC_DIR)/*.pdf) \
-	$(wildcard $(FIGSRC_DIR)/*.svg)
+	$(wildcard $(FIGSRC_DIR)/*.svg) 
 
+IMG_GREY = $(wildcard $(GREYSRC_DIR)/*.svg)
 IMG_PNG = $(wildcard $(FIGSRC_DIR)/*.png)
 
 EPS  = $(foreach file, $(XFIGS), $(EPS_DIR)/$(basename $(notdir $(file))).eps)
@@ -65,6 +68,7 @@ PDF += $(foreach file, $(IMG_PNG), $(PDF_DIR)/$(basename $(notdir $(file))).png)
 TEX  = $(foreach file, $(XFIGS), $(TEX_DIR)/$(basename $(notdir $(file))).tex) 
 TEX += $(wildcard /*.tex)
 
+GREY = $(foreach file, $(IMG_GREY), $(GREY_DIR)/$(basename $(notdir $(file))).pdf) 
 
 ############################################################
 ### Cibles
@@ -77,7 +81,7 @@ ps: $(CIBLE).ps.gz
 
 pdf: LATEX = pdflatex
 pdf: $(CIBLE).pdf
-#	evince $<
+	evince $<
 
 clean:
 	@rm -f $(AUX) $(CIBLE).toc
@@ -89,7 +93,7 @@ cleanps: clean
 	@rm -f $(EPS) $(TEX) $(CIBLE).ps.gz
 
 cleanpdf: clean
-	@rm -f $(PDF) $(CIBLE).pdf
+	@rm -f $(PDF) $(GREY) $(CIBLE).pdf
 
 cleanall: cleanps cleanpdf
 
@@ -111,7 +115,7 @@ $(CIBLE).ps: $(CIBLE).dvi
 $(CIBLE).dvi: $(EPS) $(TEX) $(AUX) $(BIB)
 	$(LATEX) $(CIBLE).tex
 
-$(CIBLE).pdf: $(PDF) $(TEX) $(AUX) $(BIB)
+$(CIBLE).pdf: $(PDF) $(GREY) $(TEX) $(AUX) $(BIB)
 	$(LATEX) $(CIBLE).tex
 
 $(EPS_DIR)/%.eps: $(FIGSRC_DIR)/%.fig
@@ -145,6 +149,9 @@ $(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.pdf
 	cp $< $@
 
 $(PDF_DIR)/%.pdf: $(FIGSRC_DIR)/%.svg
+	inkscape $< --export-pdf=$@
+
+$(GREY_DIR)/%.pdf: $(GREYSRC_DIR)/%.svg
 	inkscape $< --export-pdf=$@
 
 $(PDF_DIR)/%.png: $(FIGSRC_DIR)/%.png
