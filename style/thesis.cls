@@ -39,12 +39,28 @@ bookmarks,
 bookmarksopen,
 colorlinks=true,
 linkcolor=tango-red-3,
+citecolor=tango-green-3,
 urlcolor=tango-blue-3]{hyperref}
 \else% moteur tex
 \RequirePackage[hypertex,
 hyperindex=false,
 colorlinks=false]{hyperref}
 \fi
+
+%-----------------------------------------------------------------------
+% figures en noir & blanc
+\newif{\ifnb}
+\DeclareOption{nb}{\nbtrue}
+\ProcessOptions
+%-----------------------------------------------------------------------
+\ifnb%
+%\newcommand{\image}[2]{\IfFileExists{./grey/#2.pdf}{\includegraphics[width=#1]{./grey/#2}}{\includegraphics[width=#1]{./pdf/#2}}}%
+\newcommand{\image}[2]{\includegraphics[width=#1]{./grey/#2}}%
+\else%
+\newcommand{\image}[2]{\includegraphics[width=#1]{./pdf/#2}}
+\fi
+%-----------------------------------------------------------------------
+
 
 % % Set equal margins on book style
 \setlength{\oddsidemargin}{30pt}
