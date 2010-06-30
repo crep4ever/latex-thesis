@@ -25,6 +25,7 @@
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
 \RequirePackage{nota}
 %\RequirePackage{MnSymbol}
+%\RequirePackage{thesischapter}
 
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
@@ -109,7 +110,6 @@ colorlinks=false]{hyperref}
 \setlength{\largeurnota}{.8cm}
 \newenvironment{nota}{%
   \begin{pictonote}{\ficnota}}{\end{pictonote}}
-
 %----------------------------------------------------------------------
 % pour faire parler \include dans le terminal
 \let\includeORIG\include
