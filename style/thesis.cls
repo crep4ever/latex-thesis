@@ -15,8 +15,8 @@
 \RequirePackage{ifpdf}
 \RequirePackage{graphicx,amsfonts,amsmath,amssymb,psfrag,fancyhdr,appendix,subfigure}
 \RequirePackage{layout}
-\RequirePackage[sectionbib]{natbib}
-\RequirePackage{chapterbib}
+%\RequirePackage[sectionbib]{natbib}
+%\RequirePackage{chapterbib}
 \RequirePackage{makeidx} % pour l'index
 \RequirePackage[english,frenchb]{babel}
 \RequirePackage[utf8]{inputenc}
@@ -24,6 +24,7 @@
 \RequirePackage{xcolor}
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
 \RequirePackage{nota}
+%\RequirePackage{MnSymbol}
 
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
@@ -108,3 +109,12 @@ colorlinks=false]{hyperref}
 \setlength{\largeurnota}{.8cm}
 \newenvironment{nota}{%
   \begin{pictonote}{\ficnota}}{\end{pictonote}}
+
+%----------------------------------------------------------------------
+% pour faire parler \include dans le terminal
+\let\includeORIG\include
+\renewcommand{\include}[1]{%
+  \typeout{============================================================}%
+  \typeout{+ #1}%
+  \typeout{============================================================}%  
+  \includeORIG{#1}}
