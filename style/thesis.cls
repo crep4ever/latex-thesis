@@ -24,8 +24,8 @@
 \RequirePackage{xcolor}
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
 \RequirePackage{nota}
-%\RequirePackage{MnSymbol}
 %\RequirePackage{thesischapter}
+%\RequirePackage{MnSymbol}
 
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
@@ -118,3 +118,10 @@ colorlinks=false]{hyperref}
   \typeout{+ #1}%
   \typeout{============================================================}%  
   \includeORIG{#1}}
+%-----------------------------------------------------------------------
+% référence à une même note de fin de page
+% exemple :
+% une note\footnote{un note partagée\label{note1}} blablabla et je la
+% partage ici\refnote{note1}. C'est pas beau ça ?? (vient du package
+% french)
+\def\refnote#1{\hbox{$^{\ref{#1}}$}}
