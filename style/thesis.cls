@@ -13,7 +13,7 @@
 \LoadClass[a4paper,twoside,12pt]{book}
 
 \RequirePackage{ifpdf}
-\RequirePackage{graphicx,amsfonts,amsmath,amssymb,psfrag,fancyhdr,appendix,subfigure}
+\RequirePackage{graphicx,amsfonts,amsmath,amssymb,amsthm,psfrag,fancyhdr,appendix,subfigure}
 \RequirePackage{layout}
 %\RequirePackage[sectionbib]{natbib}
 %\RequirePackage{chapterbib}
