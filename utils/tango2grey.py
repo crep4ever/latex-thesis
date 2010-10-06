@@ -6,31 +6,31 @@ import glob
 # the dictionary has target_word:replacement_word pairs
 word_dic = {
 #gris clair -> blanc
-"#eeeeec": "#ffffff",
-"#d3d7cf": "#f9f9f9",
-"#babdb6": "#f2f2f2",
+"#eeeeec": "#ffffff", #blanc
+"#d3d7cf": "#ececec", #7.5% gris
+"#babdb6": "#cccccc", #20% gris
 
-#jaune -> 5% gris
+#jaune -> 7,5% gris
 "#fce94f": "#ececec",
 "#edd400": "#ececec",
 "#c4a000": "#ececec",
       
 #orange -> 20% gris
 "#fcaf3e": "#cccccc",
-"#f57900": "#cccccc",
-"#ce5c00": "#cccccc",
+"#f57900": "#b3b3b3",
+"#ce5c00": "#808080",#50% gris
        
 #vert -> 30% gris
 "#8ae234": "#b3b3b3",
 "#73d216": "#b3b3b3",
-"#4e9a06": "#b3b3b3",
+"#4e9a06": "#666666",#60% gris
 
 #bleu  -> 40% gris
 "#729fcf": "#999999",
 "#3465a4": "#999999",
-"#204a87": "#999999",
+"#204a87": "#333333", #80% gris
        
-#violet -> 50% gris
+#violet -> 60% gris
 "#ad7fa8": "#666666",
 "#75507b": "#666666",
 "#5c3566": "#666666",
@@ -46,8 +46,8 @@ word_dic = {
 "#8f5902": "#333333",
 
 #gris foncé -> noir
-"#888a85": "#1a1a1a",
-"#555753": "#000000",
+"#888a85": "#cccccc", #20% gris
+"#555753": "#1a1a1a", #80% gris
 "#2e3436": "#000000",
 }
  

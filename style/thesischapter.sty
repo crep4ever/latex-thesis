@@ -8,6 +8,45 @@
 %=======================================================================
 \RequirePackage[french]{minitoc-hyper}
 
+%%
+% title box
+%%
+\RequirePackage{calc}
+\newsavebox{\boitetitre}
+\newlength{\tempdim}
+\newlength{\largeurboitetitre}
+\newlength{\hauteurboitetitre}
+\newlength{\largeurtitre}
+
+\newcommand{\espacetitre}{0.6}
+\newcommand{\decalagetitreg}{1}
+\newcommand{\decalagetitred}{5}
+
+\newcommand{\traitressort}[2][1]{%
+  \leaders\hrule height#2\hskip0pt plus #1fill\relax}
+
+\newcommand{\titlebox}[3][-0.5ex]{%
+  \begin{lrbox}{\boitetitre}\kern\fboxsep#3\kern\fboxsep\end{lrbox}%
+  \settowidth{\largeurboitetitre}{\usebox{\boitetitre}}%
+  \settowidth{\largeurtitre}{#2}%
+  \settoheight{\hauteurboitetitre}{\usebox{\boitetitre}}%
+  \settodepth{\tempdim}{\usebox{\boitetitre}}%
+  \addtolength{\hauteurboitetitre}{\tempdim+2\fboxrule+2\fboxsep}%
+  \parbox{\fboxrule}{%
+    \rule{\fboxrule}{\hauteurboitetitre}}%
+  \parbox{\largeurboitetitre}{%
+    \begin{flushleft}
+      \makebox[\largeurboitetitre]{%
+        \traitressort[\decalagetitreg]{\fboxrule}%
+        \raisebox{#1}[0pt][0pt]{%
+          \kern\espacetitre\fboxsep#2\kern\espacetitre\fboxsep}%
+        \traitressort[\decalagetitred]{\fboxrule}}\\[\fboxsep]\nointerlineskip
+      \usebox{\boitetitre}\\[\fboxsep]\nointerlineskip%
+      \rule{\largeurboitetitre}{\fboxrule}
+    \end{flushleft}}%
+  \parbox{\fboxrule}{%
+    \rule{\fboxrule}{\hauteurboitetitre}}}
+
 %-----------------------------------------------------------------------
 % Définition du minisommaire
 
@@ -28,7 +67,7 @@
 
 \dominitoc
 \let\minisommaire\minitoc
-\let\mtcSfont\sectionfont
+%% \let\mtcSfont\sectionfont
 \def\@BBR{\unpenalty\nopagebreak[4]}
 \def\The@chapter{\arabic{mtc}} %23
 
@@ -90,6 +129,7 @@
 \DeclareFixedFont{\chapchapfont}{T1}{phv}{b}{n}{16pt}
 \DeclareFixedFont{\chaptitfont}{T1}{phv}{b}{n}{24.88pt}
 
+\makeatletter
 \renewcommand{\chapter}{%
   \cleardoublepage
   \stepcounter{chapitre}
@@ -98,21 +138,21 @@
   \@afterindentfalse
   \secdef\@chapter\@schapter}
 
-\renewcommand{\@makechapterhead}[1]{%
+\def\@makechapterhead#1{%
   \begin{cadrechap}
-    \dbg@boite{\begin{minipage}[t][6cm][t]{.75\linewidth}
-        \minisommaire
-      \end{minipage}}%
-    \dbg@boite{\begin{minipage}[t]{.25\linewidth}
-        \begin{flushright}
-          {\chapchapfont\chaptername}\\[1cm]
-          {\chapnumfont\thechapter}
-        \end{flushright}
-      \end{minipage}}%
-  \begin{flushright}\chaptitfont#1\end{flushright}
+    \begin{minipage}[t][6cm][t]{.75\linewidth}
+      \minisommaire
+    \end{minipage}%
+    \begin{minipage}[t]{.25\linewidth}
+      \begin{flushright}
+        {\chapchapfont\chaptername}\\[1cm]
+        {\chapnumfont\thechapter}
+      \end{flushright}
+    \end{minipage}%
+    \begin{flushright}\chaptitfont#1\end{flushright}
   \end{cadrechap}}
 
-\renewcommand{\@makeschapterhead}[1]{%   
+\def\@makeschapterhead#1{%   
   \begin{cadrechap}
     \vspace*{6cm}
     \mbox{}\hfill{\chaptitfont#1}% titre du chapitre

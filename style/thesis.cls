@@ -13,26 +13,49 @@
 \LoadClass[a4paper,twoside,12pt]{book}
 
 \RequirePackage{ifpdf}
-\RequirePackage{graphicx,amsfonts,amsmath,amssymb,amsthm,psfrag,fancyhdr,appendix,subfigure}
-\RequirePackage{layout}
-%\RequirePackage[sectionbib]{natbib}
-%\RequirePackage{chapterbib}
-\RequirePackage{makeidx} % pour l'index
-\RequirePackage[english,frenchb]{babel}
+
 \RequirePackage[utf8]{inputenc}
+\RequirePackage[english,frenchb]{babel}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{type1cm}
+\RequirePackage{lmodern}
+
+\RequirePackage{graphicx}
 \RequirePackage{xcolor}
-\RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
+\RequirePackage{rotating}
+\RequirePackage{multirow}
+\RequirePackage{subfigure}
+
+\RequirePackage{amssymb}
+\RequirePackage{amsfonts}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+
+\RequirePackage{psfrag}
+\RequirePackage{fancyhdr}
+\RequirePackage{appendix}
+\RequirePackage{layout}
+\RequirePackage{makeidx}
+
 \RequirePackage{nota}
-%\RequirePackage{thesischapter}
-%\RequirePackage{MnSymbol}
+\RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
+
+\RequirePackage[francais]{minitoc}
 
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
 \definecolor{tango-blue-3}{HTML}{204a87}
 \definecolor{tango-red-3}{HTML}{a40000}
 
-\ifpdf % moteur pdflatex
+\newif{\ifnb}
+\DeclareOption{nb}{\nbtrue}
+\ProcessOptions
+
+\ifnb % moteur pdflatex
+\RequirePackage[hypertex,
+hyperindex=false,
+colorlinks=false]{hyperref}
+\else% moteur tex
 \RequirePackage[pdftex,
 hyperindex=true,
 pdfpagelabels,
@@ -42,26 +65,30 @@ colorlinks=true,
 linkcolor=tango-red-3,
 citecolor=tango-green-3,
 urlcolor=tango-blue-3]{hyperref}
-\else% moteur tex
-\RequirePackage[hypertex,
-hyperindex=false,
-colorlinks=false]{hyperref}
 \fi
 
 %-----------------------------------------------------------------------
-% figures en noir & blanc
-\newif{\ifnb}
-\DeclareOption{nb}{\nbtrue}
-\ProcessOptions
-%-----------------------------------------------------------------------
+%figures
+\newlength{\FigSpacing}
+\newlength{\FigWidth}
+\newlength{\FigLength}
+
+\setlength{\FigSpacing}{0.5cm}
+\setlength{\FigWidth}{3cm}
+\setlength{\FigLength}{3cm}
+
 \ifnb%
-%\newcommand{\image}[2]{\IfFileExists{./grey/#2.pdf}{\includegraphics[width=#1]{./grey/#2}}{\includegraphics[width=#1]{./pdf/#2}}}%
-\newcommand{\image}[2]{\includegraphics[width=#1]{./grey/#2}}%
+\newcommand{\image}[1]{\includegraphics[width=\FigWidth]{./grey/#1}}%
 \else%
-\newcommand{\image}[2]{\includegraphics[width=#1]{./pdf/#2}}
+\newcommand{\image}[1]{\includegraphics[width=\FigWidth]{./pdf/#1}}
+\fi
+
+\ifnb%
+\newcommand{\Image}[2]{\includegraphics[width=#1]{./grey/#2}}%
+\else%
+\newcommand{\Image}[2]{\includegraphics[width=#1]{./pdf/#2}}
 \fi
 %-----------------------------------------------------------------------
-
 
 % % Set equal margins on book style
 \setlength{\oddsidemargin}{30pt}
@@ -89,11 +116,19 @@ colorlinks=false]{hyperref}
 
 % Define pagestyle
 \pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+ 
 \fancyhf{}
-\renewcommand{\chaptermark}[1]{\markboth{ \emph{#1}}{}}
-\fancyhead[LO]{}
-\fancyhead[RE]{\leftmark}
 \fancyfoot[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textit{\nouppercase{\rightmark}}}
+ 
+\fancypagestyle{plain}{ %
+\fancyhf{} % remove everything
+\renewcommand{\headrulewidth}{0pt} % remove lines as well
+\renewcommand{\footrulewidth}{0pt}}
+
 
 %-----------------------------------------------------------------------
 %renvois
@@ -125,3 +160,19 @@ colorlinks=false]{hyperref}
 % partage ici\refnote{note1}. C'est pas beau ça ?? (vient du package
 % french)
 \def\refnote#1{\hbox{$^{\ref{#1}}$}}
+
+%-----------------------------------------------------------------------
+%Espacement des paragraphes
+\setlength{\parskip}{0.5ex plus .2ex minus .2ex}
+
+%-----------------------------------------------------------------------
+%Suppression des warnings
+\setlength{\headheight}{15pt}
+\pdfmapfile{+bsr.map}
+
+%-----------------------------------------------------------------------
+%Mini-sommaire par chapitre
+\setcounter{minitocdepth}{1}
+
+
+
