@@ -1,0 +1,265 @@
+\newcommand{\fogrimmi}{FoGrImMi\xspace}
+\newcommand{\siecle}[1]{\textsc{#1}\ieme~siècle}
+\newcommand{\orbit}[1]{\langle{#1}\rangle}
+\newcommand{\card}[1]{|{#1}|}
+\newcommand{\abs}[1]{|{#1}|}
+\newcommand{\nb}[1]{{\#}{#1}}
+
+\newcommand{\surfels}[1]{\ensuremath{\mbox{\em surfels}(#1)}}
+\newcommand{\lignels}[1]{\ensuremath{\mbox{\em lignels}(#1)}}
+\newcommand{\pointels}[1]{\ensuremath{\mbox{\em pointels}(#1)}}
+\newcommand{\pixels}[1]{\ensuremath{\mbox{\em pixels}(#1)}}
+\newcommand{\swap}[1]{\ensuremath{\mbox{\em bascule}(#1)}}
+\newcommand{\region}[1]{\ensuremath{\mbox{\em r\'egion}(#1)}}
+\newcommand{\face}[1]{\ensuremath{\mbox{\em face}(#1)}}
+\newcommand{\triplet}[1]{\ensuremath{\mbox{\em triplet}(#1)}}
+\newcommand{\surfaces}[1]{\ensuremath{\mbox{\em surfaces}(#1)}}
+\renewcommand{\sf}[1]{\ensuremath{\mbox{\em sf}(#1)}}
+\renewcommand{\deg}[1]{\ensuremath{\mbox{\em d}(#1)}}
+\newcommand{\surfel}[1]{\ensuremath{\mbox{\em surfel}(#1)}}
+\newcommand{\lignel}[1]{\ensuremath{\mbox{\em lignel}(#1)}}
+\newcommand{\pointel}[1]{\ensuremath{\mbox{\em pointel}(#1)}}
+
+\newcommand{\brins}[1]{\ensuremath{\mbox{\em brins}(#1)}}
+\newcommand{\faces}[1]{\ensuremath{\mbox{\em faces}(#1)}}
+\newcommand{\regions}[1]{\ensuremath{\mbox{\em regions}(#1)}}
+
+%\newcommand{\father}[1]{\ensuremath{\mbox{\em pere}(#1)}}
+%\newcommand{\rep}[1]{\ensuremath{\mbox{\em rep}(#1)}}
+%\newcommand{\sons}[1]{\ensuremath{\mbox{\em fils}(#1)}}
+\newcommand{\cc}[1]{\ensuremath{\mbox{\em CC}(#1)}}
+
+\newcommand{\voxels}[1]{\ensuremath{\mbox{\em voxels}(#1)}}
+\newcommand{\premierVoxel}[1]{\ensuremath{\mbox{\em premierVoxel}(#1)}}
+
+\newcommand{\voxelIn}[1]{\ensuremath{\mbox{\em voxel}_1(#1)}}
+\newcommand{\voxelOut}[1]{\ensuremath{\mbox{\em voxel}_2(#1)}}
+
+\newcommand{\union}[1]{\ensuremath{\mbox{\em union}(#1)}}
+\newcommand{\find}[1]{\ensuremath{\mbox{\em trouver}(#1)}}
+\newcommand{\trouve}[1]{\ensuremath{\mbox{\em trouver}(#1)}}
+
+\newcommand{\inner}[1]{\ensuremath{\mbox{\em inner}(#1)}}
+%\newcommand{\outer}[1]{\ensuremath{outer(#1)}}
+
+\newcommand{\mst}[2]{\ensuremath{\mbox{\em MST}(#1,#2)}}
+\newcommand{\cint}[1]{\ensuremath{\mbox{\em Int}(#1)}}
+\newcommand{\cext}[2]{\ensuremath{\mbox{\em Ext}(#1,#2)}}
+\newcommand{\cextf}[1]{\ensuremath{\mbox{\em Ext}(#1)}}
+\newcommand{\mcint}[2]{\ensuremath{\mbox{\em MInt}(#1,#2)}}
+
+\newcommand{\oracle}[2]{\ensuremath{\mbox{\em Oracle}(#1,#2)}}
+
+\newcommand{\ie}{c'est-à-dire,\xspace}
+\newcommand{\eg}{par exemple}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\apriori}{\emph{a priori}}
+\newcommand{\adhoc}{\emph{ad-hoc}}
+\newcommand{\anglais}[1]{(\emph{#1} en anglais)}
+
+%\newcommand{\degree}{\ensuremath{\mbox{\em degr\'e}}}
+
+\newtheorem{theorem}{Th\'eor\`eme}
+\newtheorem{corolary}{Corrolaire}
+\newtheorem{lemma}{Lemme}
+\newtheorem{definition}{D\'efinition}
+\newtheorem{proposition}{Proposition}
+%\newtheorem{proof}{Démonstration}
+
+\newcommand{\todo}[1]{\par{\bf{TODO: #1}}\par}
+
+\newcommand{\dart}{b} 
+\newcommand{\Darts}{\mathcal{B}}
+\newcommand{\Regions}{\mathcal{R}} 
+\newcommand{\Pixels}{\mathcal{P}} 
+\newcommand{\betti}{\mathfrak{b}}
+\newcommand{\vertex}{s}
+\newcommand{\edge}{a}
+\newcommand{\vface}{f}
+\newcommand{\voxel}{v}
+\newcommand{\vsurface}{\mathfrak{s}}
+
+\newcommand{\geomap}{GeoMap}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+
+%pyramides
+\newcommand{\LivingDarts}{\ensuremath{\mbox{\em $\mathcal{BS}$}}\xspace}
+\newcommand{\NonLivingDarts}{\ensuremath{\mbox{\em $\mathcal{BN}$}}\xspace}
+\newcommand{\Vertices}{\ensuremath{\mbox{\em $\mathcal{S}$}}\xspace}
+\newcommand{\LivingVertices}{\ensuremath{\mbox{\em $\mathcal{SS}$}}\xspace}
+\newcommand{\NonLivingVertices}{\ensuremath{\mbox{\em $\mathcal{SN}$}}\xspace}
+\newcommand{\Edges}{\ensuremath{\mbox{\em $\mathcal{A}$}}\xspace}
+\newcommand{\Pointels}{\ensuremath{\mbox{\em $\mathcal{P}$}}\xspace}
+\newcommand{\Lignels}{\ensuremath{\mbox{\em $\mathcal{L}$}}\xspace}
+\newcommand{\LivingEdges}{\ensuremath{\mbox{\em $\mathcal{AS}$}}\xspace}
+\newcommand{\NonLivingEdges}{\ensuremath{\mbox{\em $\mathcal{AN}$}}\xspace}
+\newcommand{\OrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GO}$}}\xspace}
+\newcommand{\NonOrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GNO}$}}\xspace}
+\newcommand{\cells}[1]{\ensuremath{\mbox{\em $#1$-cellules}}}
+\newcommand{\cell}[1]{\ensuremath{\mbox{\em $#1$-cellule}}}
+\newcommand{\cycle}{\ensuremath{\mbox{\em $\pi$}}}
+
+\newcommand{\ReceptiveField}{\ensuremath{\mbox{\em $\mathcal{CR}$}}}
+\newcommand{\ConnectingWalk}{\ensuremath{\mbox{\em $\mathcal{CW}$}}}
+\newcommand{\ConnectingSequence}{\ensuremath{\mbox{\em $\mathcal{SC}$}}}
+\newcommand{\ProjectionStrip}{\ensuremath{\mbox{\em $\mathcal{BP}$}}\xspace}
+\newcommand{\Kernel}{\ensuremath{\mbox{\em $\mathcal{K}$}}}
+\newcommand{\ssi}{\ensuremath{\mbox{\em ~$\Leftrightarrow$~}}}
+\newcommand{\resp}{\emph{resp.}\xspace}
+\newcommand{\id}{\ensuremath{\mbox{\em $Id.$}}}
+\newcommand{\updown}{\emph{prédécesseur/successeur\xspace}}
+\newcommand{\etou}{et/ou\xspace}
+\newcommand{\command}[1]{{\mdseries\ttfamily\upshape#1}}
+\newcommand{\ligne}[1]{{\mdseries\ttfamily\upshape{ligne\,#1}}}
+\renewcommand{\unit}[1]{\,{\mdseries\ttfamily\upshape#1}}
+\newcommand{\xpos}{\ensuremath{\mbox{\em x}}}
+\newcommand{\xneg}{\ensuremath{\mbox{\em -x}}}
+\newcommand{\ypos}{\ensuremath{\mbox{\em y}}}
+\newcommand{\yneg}{\ensuremath{\mbox{\em -y}}}
+\newcommand{\firstpixel}{\emph{premier pixel}\xspace}
+
+
+\makeatletter
+
+\newcommand{\ReductionWindow}[1]{
+  \@ifmtarg{#1}{%
+    \ensuremath{\mbox{\em $\mathcal{FR}$}}
+  }{%
+    \ensuremath{\mbox{\em $\mathcal{FR}_{#1}$}}
+  }%
+}
+
+\newcommand{\father}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{p\`ere}%
+  }{%
+    \ensuremath{\mbox{\em p\`ere}(#1)}%
+  }%
+}
+\newcommand{\sons}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{fils}%
+  }{%
+    \ensuremath{\mbox{\em fils}(#1)}%
+  }%
+}
+\newcommand{\rep}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{rep}%
+  }{%
+    \ensuremath{\mbox{\em rep}(#1)}%
+  }%
+}
+\newcommand{\pred}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{pr\'ed\'ecesseur}%
+  }{%
+    \ensuremath{\mbox{\em pr\'ed\'ecesseur}(#1)}%
+  }%
+}
+\renewcommand{\succ}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{successeur}%
+  }{%
+    \ensuremath{\mbox{\em successeur}(#1)}%
+  }%
+}
+\newcommand{\parametres}[1]{%
+  \@ifmtarg{#1}{%
+    \emph{paramètres}%
+  }{%
+    \ensuremath{\mbox{\em param\`etres}(#1)}%
+  }%
+}%
+\makeatother
+
+\newcommand{\Tiles}{\ensuremath{\mbox{\em $\mathcal{T}$}}\xspace}
+\newcommand{\Images}{\ensuremath{\mbox{\em $\mathcal{I}$}}\xspace}
+\newcommand{\Graphs}{\ensuremath{\mbox{\em $\mathcal{G}$}}\xspace}
+\newcommand{\Boule}{\ensuremath{\mbox{\em B}}\xspace}
+
+
+% Internal commands to handle references
+% To reference a figure
+\newcommand{\Reffig}[1]{Figure~\ref{#1}} % in the begining of a phrase
+\newcommand{\reffig}[1]{Figure~\ref{#1}} % in the middle of a phrase
+
+% To reference a part
+\newcommand{\Refpart}[1]{Partie~\ref{#1}} % in the begining of a phrase
+\newcommand{\refpart}[1]{Partie~\ref{#1}} % in the middle of a phrase
+
+% To reference a chapter
+\newcommand{\Refchap}[1]{Chapitre~\ref{#1}} % in the begining of a phrase
+\newcommand{\refchap}[1]{Chapitre~\ref{#1}} % in the middle of a phrase
+
+% To reference a section
+\newcommand{\Refsec}[1]{Section~\ref{#1}} % in the begining of a phrase
+\newcommand{\refsec}[1]{Section~\ref{#1}} % in the middle of a phrase
+
+% To reference a table
+\newcommand{\Reftab}[1]{Tableau~\ref{#1}} % in the begining of a phrase
+\newcommand{\reftab}[1]{Tableau~\ref{#1}} % in the middle of a phrase
+
+% To reference an algorithm
+\newcommand{\Refalgo}[1]{Algorithme~\ref{#1}} % in the begining of a phrase
+\newcommand{\refalgo}[1]{Algorithme~\ref{#1}} % in the middle of a phrase
+
+% To reference a definition
+\newcommand{\Refdef}[1]{Définition~\ref{#1}} % in the begining of a phrase
+\newcommand{\refdef}[1]{Définition~\ref{#1}} % in the middle of a phrase
+
+% To reference a proposition
+\newcommand{\Refprop}[1]{Proposition~\ref{#1}} % in the begining of a phrase
+\newcommand{\refprop}[1]{Proposition~\ref{#1}} % in the middle of a phrase
+
+% To reference a corolary
+\newcommand{\Refcor}[1]{Corollaire~\ref{#1}} % in the begining of a phrase
+\newcommand{\refcor}[1]{Corollaire~\ref{#1}} % in the middle of a phrase
+
+% To reference a lemma
+\newcommand{\Reflemma}[1]{Lemme~\ref{#1}} % in the begining of a phrase
+\newcommand{\reflemma}[1]{Lemme~\ref{#1}} % in the middle of a phrase
+\newcommand{\condition}[1]{condition~(#1)}
+
+\newcommand\green{$+$\xspace}
+\newcommand\red{$-$\xspace}
+\newcommand\orange{$+/-$\xspace}
+\newcommand\bottomup{$\Uparrow$\xspace}
+\newcommand\topdown{$\Downarrow$\xspace}
+
+\newcommand\adj[2]{\ensuremath{#1~\mathrm{adj}~#2}}
+
+\def\restriction#1#2{\mathchoice
+              {\setbox1\hbox{${\displaystyle #1}_{\scriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{${\textstyle #1}_{\scriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{${\scriptstyle #1}_{\scriptscriptstyle #2}$}
+              \restrictionaux{#1}{#2}}
+              {\setbox1\hbox{${\scriptscriptstyle #1}_{\scriptscriptstyle #2}$}
+              \restrictionaux{#1}{#2}}}
+\def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}}
+
+
+\newcommand{\sizeof}[1]{\ensuremath{\mbox{\em taille(#1)}}}
+\newcommand{\moy}{\ensuremath{\mbox{\em moy}}}
+\newcommand{\var}{\ensuremath{\mbox{\em var}}}
+\newcommand{\threshold}{\ensuremath{\mbox{\em seuil}}}
+\newcommand{\etal}[1]{#1~\emph{et~al.}}
+\newcommand{\cf}[1]{(voir~\refsec{#1})}
+
+\newcommand{\ram}[1]{{\mdseries\ttfamily\upshape ram}(#1)}
+\newcommand{\topo}{topologie}
+\newcommand{\tree}{arbre}
+\newcommand{\geom}{géométrie}
+\newcommand{\tq}{~|~}
+\newcommand{\col}[1]{colonne~#1}
+\newcommand{\cols}[1]{colonnes~#1}
+
+\let\textORIG\text
+\renewcommand{\text}[1]{%
+  \textORIG{~#1~}%
+}
