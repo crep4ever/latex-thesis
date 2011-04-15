@@ -1,46 +1,65 @@
-\makeatletter\def\input@path{{style/} {tex/} {bib/}}\makeatother
-\documentclass{thesis}
-\graphicspath{ {fig/pdf/} }
 %*******************************************************************************
-% Title
-%\title{Titre}
-%\author{Prénom}{Nom}
-%\director{Prénom}{Nom}
-%\directorAd{Prénom}{Nom}
-%\academy{Caen} 
-%\university{Université de Caen}{Facult\'e des Sciences
-%  Fondamentales et Appliqu\'ees}{Université de Caen}
-%\doctoralschool{Informatique et Applications}{Sciences et Ingénierie
-%  pour l'Information}
-%\date{}
-%-------------------------------------------------------------------------------
-%Jury
-%\addjuryrapport{Prénom Nom}{Titre}{Laboratoire}%
-%\addjurydirth{Prénom Nom}{Titre}{Laboratoire}%
-%\addjuryexam{Prénom Nom}{Titre}{Laboratoire}%
-%\addjurypres{Prénom Nom}{Titre}{Laboratoire}%
+%Master document.
+%Build with make && makeindex -s style/index -o main.ind main.idx && make
+%*******************************************************************************
+\makeatletter\def\input@path{{style/} {tex/} {bib/}}\makeatother
+%\documentclass[nb]{thesis}
+\documentclass{thesis}
+%*******************************************************************************
 %*******************************************************************************
 \input{macro}
+\input{title}
+\makeindex
+%*******************************************************************************
 %*******************************************************************************
 \begin{document}
-\selectlanguage{french}
+
+%-------------------------------------------------------------------------------
+% Préface
+%-------------------------------------------------------------------------------
+\maketitle
 \frontmatter
-%\maketitle
-%Résumé
-%\input{abstract}
+%\include{abstract}
+\dominitoc
 \tableofcontents
+
+%-------------------------------------------------------------------------------
+% Document
+%-------------------------------------------------------------------------------
+\include{hyphenation}
 \mainmatter
-%\input{chapitre1}
-%\input{chapitre2}
-%\appendix
+\include{introduction}
+\include{chapitre1}
+\include{chapitre2}
+\include{chapitre3}
+\include{chapitre4}
+\include{conclusion}
+
+%-------------------------------------------------------------------------------
+% Annexes
+%-------------------------------------------------------------------------------
 \backmatter
-%*******************************************************************************
-% Bibliographie
-\bibliographystyle{bib/alpha-fr} %
+
+%Biblio
+\bibliographystyle{alpha} %
 \renewcommand{\bibname}{Références Bibliographiques} %
+\addentry{toc}{chapter}{Références Bibliographiques}
 \bibliography{bib/biblio} %
-%*******************************************************************************
-%\input{backcover}
+
+% Liste des figures
+\addentry{toc}{chapter}{Table des figures}
+\listoffigures
+
+% Liste des algorithmes
+\addentry{toc}{chapter}{Liste des algorithmes}
+\listofalgorithmes
+
+% Index
+\addentry{toc}{chapter}{Index}
+\printindex
+
+% Backcover
+%\includet{backcover}
 %*******************************************************************************
 \end{document}
 %*******************************************************************************

@@ -1,61 +1,68 @@
 %=======================================================================
 % Fichier      : thesis.cls
-% Title        : 
-% Auteurs      : ``Guillaume Nee <guillaume.nee@greyc.ensicaen.fr>'', 
-%                ``Romain Goffe <romain.goffe@gmail.com>''
-% Creation     : mer. mai 19, 2010  17:49 
-% Modification : 
 %=======================================================================
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thesis}[2010/05/19]
-
 \LoadClass[a4paper,twoside,12pt]{book}
 
-\RequirePackage{ifpdf}
-
+%font
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,frenchb]{babel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{type1cm}
 \RequirePackage{lmodern}
 
+%index
+\RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
+\RequirePackage[francais]{minitoc}
+\RequirePackage{makeidx}
+
+%graphics
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{rotating}
 \RequirePackage{multirow}
 \RequirePackage{subfigure}
 
+%math
 \RequirePackage{amssymb}
 \RequirePackage{amsfonts}
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
+\RequirePackage[squaren, Gray, cdot]{SIunits}
 
+%layout
 \RequirePackage{psfrag}
 \RequirePackage{fancyhdr}
 \RequirePackage{appendix}
 \RequirePackage{layout}
 \RequirePackage{makeidx}
+\RequirePackage{xspace}
+\RequirePackage{multicol}
 
+%tools
+\RequirePackage{ifmtarg}
 \RequirePackage{nota}
-\RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
 
-\RequirePackage[francais]{minitoc}
-
+%hyperref
+\RequirePackage{ifpdf}
 \definecolor{tango-green-1}{HTML}{8ae234}
 \definecolor{tango-green-3}{HTML}{4e9a06}
 \definecolor{tango-blue-3}{HTML}{204a87}
 \definecolor{tango-red-3}{HTML}{a40000}
 
+\newboolean{@soutenue}
+\setboolean{@soutenue}{false}
+
 \newif{\ifnb}
 \DeclareOption{nb}{\nbtrue}
 \ProcessOptions
 
-\ifnb % moteur pdflatex
+\ifnb
 \RequirePackage[hypertex,
 hyperindex=false,
 colorlinks=false]{hyperref}
-\else% moteur tex
+\else
 \RequirePackage[pdftex,
 hyperindex=true,
 pdfpagelabels,
@@ -68,7 +75,20 @@ urlcolor=tango-blue-3]{hyperref}
 \fi
 
 %-----------------------------------------------------------------------
+%metadata
+\ifpdf
+\hypersetup{
+pdfauthor = {Romain Goffe},%
+pdftitle = {Pyramides irrégulières descendantes pour la segmentation de
+  grandes images histologiques},%
+pdfkeywords = {},%
+pdfcreator = {PDFLaTeX},%
+pdfproducer = {PDFLaTeX}}
+\fi
+
+%-----------------------------------------------------------------------
 %figures
+\graphicspath{ {fig/} }
 \newlength{\FigSpacing}
 \newlength{\FigWidth}
 \newlength{\FigLength}
@@ -77,20 +97,16 @@ urlcolor=tango-blue-3]{hyperref}
 \setlength{\FigWidth}{3cm}
 \setlength{\FigLength}{3cm}
 
-\ifnb%
-\newcommand{\image}[1]{\includegraphics[width=\FigWidth]{./grey/#1}}%
-\else%
-\newcommand{\image}[1]{\includegraphics[width=\FigWidth]{./pdf/#1}}
-\fi
+\newcommand{\image}[2][width=\FigWidth]{%
+  \ifnb%
+  \includegraphics[#1]{./grey/#2}%
+  \else%
+  \includegraphics[#1]{./pdf/#2}
+  \fi%
+}%
 
-\ifnb%
-\newcommand{\Image}[2]{\includegraphics[width=#1]{./grey/#2}}%
-\else%
-\newcommand{\Image}[2]{\includegraphics[width=#1]{./pdf/#2}}
-\fi
 %-----------------------------------------------------------------------
-
-% % Set equal margins on book style
+% Set equal margins on book style
 \setlength{\oddsidemargin}{30pt}
 \setlength{\evensidemargin}{30pt}
 \setlength{\marginparwidth}{45pt}
@@ -129,7 +145,6 @@ urlcolor=tango-blue-3]{hyperref}
 \renewcommand{\headrulewidth}{0pt} % remove lines as well
 \renewcommand{\footrulewidth}{0pt}}
 
-
 %-----------------------------------------------------------------------
 %renvois
 \newcommand{\voir}[2]{%
@@ -139,40 +154,79 @@ urlcolor=tango-blue-3]{hyperref}
       {\small$\blacktriangleright$}{\footnotesize\sffamily\S\,\ref{#1}\,\\p.\,\pageref{#1}}
   }}
 }
+
 %-----------------------------------------------------------------------
-% configuration de l'environnement nota
+%nota environment configuration
 \newcommand{\ficnota}{nota}
 \setlength{\largeurnota}{.8cm}
 \newenvironment{nota}{%
   \begin{pictonote}{\ficnota}}{\end{pictonote}}
+
 %----------------------------------------------------------------------
-% pour faire parler \include dans le terminal
+% more output text in terminal for \include macro
 \let\includeORIG\include
 \renewcommand{\include}[1]{%
   \typeout{============================================================}%
   \typeout{+ #1}%
   \typeout{============================================================}%  
   \includeORIG{#1}}
+
 %-----------------------------------------------------------------------
 % référence à une même note de fin de page
 % exemple :
 % une note\footnote{un note partagée\label{note1}} blablabla et je la
-% partage ici\refnote{note1}. C'est pas beau ça ?? (vient du package
-% french)
+% partage ici\refnote{note1}. 
 \def\refnote#1{\hbox{$^{\ref{#1}}$}}
 
 %-----------------------------------------------------------------------
-%Espacement des paragraphes
+%Paragraphs
 \setlength{\parskip}{0.5ex plus .2ex minus .2ex}
+\renewcommand{\paragraph}[1]{\subsubsection*{#1}}
+
+%Disable single lines at the start of a paragraph 
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
 
 %-----------------------------------------------------------------------
-%Suppression des warnings
+%Remove warnings
 \setlength{\headheight}{15pt}
 \pdfmapfile{+bsr.map}
 
 %-----------------------------------------------------------------------
-%Mini-sommaire par chapitre
-\setcounter{minitocdepth}{1}
+%Tables spacing
+\renewcommand{\arraystretch}{1.2}
 
+%-----------------------------------------------------------------------
+%Additional toc entries
+\newcommand{\addentry}[3]{
+  \cleardoublepage%
+  \phantomsection%
+  \addcontentsline{#1}{#2}{#3}%
+}
 
+%-----------------------------------------------------------------------
+%Index (fix pdfbookmark switching to entry list instead of Index title)
+\makeatletter
+\renewenvironment{theindex}
+  {\if@twocolumn
+      \@restonecolfalse
+   \else
+      \@restonecoltrue
+   \fi
+   \setlength{\columnseprule}{0pt}
+   \setlength{\columnsep}{35pt}
+   \begin{multicols}{2}[\chapter*{\indexname}]
+   \markboth{\MakeUppercase\indexname}%
+            {\MakeUppercase\indexname}%
+   \thispagestyle{plain}
+   \setlength{\parindent}{0pt}
+   \setlength{\parskip}{0pt plus 0.3pt}
+   \relax
+   \let\item\@idxitem}%
+  {\end{multicols}\if@restonecol\onecolumn\else\clearpage\fi}
+\makeatother
 
+%-----------------------------------------------------------------------
+%Typo
+\frenchspacing

@@ -27,7 +27,7 @@
 #
 ######################################################################
 
-SOURCES	:= manuscrit.tex #$(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
+SOURCES	:= $(shell egrep -l '^[^%]*\\begin\{document\}' *.tex)
 CIBLE = $(SOURCES:%.tex=%)
 AUX = $(SOURCES:%.tex=%.aux)
 BIBLIO := $(`perl -ne '($$_)=/^[^%]*\\\bibliography\{(.*?)\}/;@_=split /,/; foreach $$b (@_) { print "$$b.bib "}'`) $(SOURCES)
@@ -88,12 +88,13 @@ clean:
 	@rm -f $(CIBLE).dvi $(CIBLE).out $(CIBLE).log $(CIBLE).nav $(CIBLE).snm
 	@rm -f $(BIB) $(BIB:%.bbl=%.blg)
 	@rm -f *.aux *.log *.out
+	@rm -f $(CIBLE).m*
 
 cleanps: clean
 	@rm -f $(EPS) $(TEX) $(CIBLE).ps.gz
 
 cleanpdf: clean
-	@rm -f $(PDF) $(GREY) $(CIBLE).pdf
+	@rm -f $(PDF) $(GREY) $(CIBLE).pdf paper.pdf
 
 cleanall: cleanps cleanpdf
 

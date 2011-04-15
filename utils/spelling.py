@@ -30,6 +30,12 @@ word_dic = {
 "’": "'",
 "Ca ": "Ça ",
 "...": "\\dots ",
+"…": "\\dots",
+"	": "  ",
+"multirésolution":"multi-résolution",
+"multiéchelle":"multi-échelle",
+"linel ":"lignel ",
+#
 }
  
 # Process tex files

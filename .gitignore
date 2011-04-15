@@ -1,4 +1,9 @@
 trash
-tex/*
-fig/src/*
-bib/*
+tex/chapitre*
+tex/introduction*
+tex/conclusion*
+bib/*.bib
+.svn
+*/.svn
+*/*/.svn
+fig
