@@ -5,6 +5,7 @@ tex/conclusion*
 tex/title.tex
 bib/*.bib
 .svn
+.svnignore
 */.svn
 */*/.svn
 fig
