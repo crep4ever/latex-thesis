@@ -2,8 +2,15 @@ trash
 tex/chapitre*
 tex/introduction*
 tex/conclusion*
+tex/title.tex
 bib/*.bib
 .svn
 */.svn
 */*/.svn
 fig
+main.idx
+main.ilg
+main.ind
+main.loa
+main.lof
+main.nlo
