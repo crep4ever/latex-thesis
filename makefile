@@ -83,6 +83,9 @@ pdf: LATEX = pdflatex
 pdf: $(CIBLE).pdf
 	evince $<
 
+cleansvg:
+	@find . -name "*.svg" -exec inkscape --vacuum-defs {} \;
+
 clean:
 	@rm -f $(AUX) $(CIBLE).toc
 	@rm -f $(CIBLE).dvi $(CIBLE).out $(CIBLE).log $(CIBLE).nav $(CIBLE).snm
