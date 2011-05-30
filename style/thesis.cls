@@ -11,6 +11,7 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{type1cm}
 \RequirePackage{lmodern}
+\RequirePackage{inconsolata}
 
 %index
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
@@ -104,6 +105,11 @@ pdfproducer = {PDFLaTeX}}
   \includegraphics[#1]{./pdf/#2}
   \fi%
 }%
+
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\subfigcapskip=.2cm
 
 %-----------------------------------------------------------------------
 % Set equal margins on book style
@@ -230,3 +236,26 @@ pdfproducer = {PDFLaTeX}}
 %-----------------------------------------------------------------------
 %Typo
 \frenchspacing
+\hyphenpenalty=4000
+\tolerance=1000
+
+%-----------------------------------------------------------------------
+%Backcover
+\newenvironment{abstract}{%
+  \begin{center}%
+    {\small \bfseries \abstractname\vspace{-.5em}}%
+  \end{center}%
+}%
+
+\newenvironment{backcover}{%
+  \footnotesize%
+  \thispagestyle{empty}%
+}%
+
+\let\oldbackcover\backcover
+\let\endoldbackcover\endbackcover
+\renewenvironment{backcover}%
+{\begin{samepage}\begin{oldbackcover}}%
+{\end{oldbackcover}\end{samepage}}
+
+%-----------------------------------------------------------------------

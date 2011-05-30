@@ -51,7 +51,6 @@
 \newcommand{\oracle}[2]{\ensuremath{\mbox{\em Oracle}(#1,#2)}}
 
 \newcommand{\ie}{c'est-à-dire,\xspace}
-\newcommand{\eg}{par exemple}
 \newcommand{\etc}{etc.\xspace}
 \newcommand{\apriori}{\emph{a priori}}
 \newcommand{\adhoc}{\emph{ad-hoc}}
@@ -64,14 +63,29 @@
 \newtheorem{lemma}{Lemme}
 \newtheorem{definition}{D\'efinition}
 \newtheorem{proposition}{Proposition}
-%\newtheorem{proof}{Démonstration}
+
+\let\olddefinition\definition
+\let\endolddefinition\enddefinition
+\renewenvironment{definition}%
+{\begin{samepage}\begin{olddefinition}}%
+{\end{olddefinition}\end{samepage}}
+
+\let\oldcorolary\corolary
+\let\endoldcorolary\endcorolary
+\renewenvironment{corolary}%
+{\begin{samepage}\begin{oldcorolary}}%
+{\end{oldcorolary}\end{samepage}}
+
+\let\oldproposition\proposition
+\let\endoldproposition\endproposition
+\renewenvironment{proposition}%
+{\begin{samepage}\begin{oldproposition}}%
+{\end{oldproposition}\end{samepage}}
+
 
 \newcommand{\todo}[1]{\par{\bf{TODO: #1}}\par}
 
 \newcommand{\dart}{b} 
-\newcommand{\Darts}{\mathcal{B}}
-\newcommand{\Regions}{\mathcal{R}} 
-\newcommand{\Pixels}{\mathcal{P}} 
 \newcommand{\betti}{\mathfrak{b}}
 \newcommand{\vertex}{s}
 \newcommand{\edge}{a}
@@ -85,41 +99,51 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 
-%pyramides
+\newcommand{\Star}{\ensuremath{\mbox{\em St}}\xspace}
+\newcommand{\Darts}{\ensuremath{\mbox{\em $\mathcal{B}$}}\xspace}
+\newcommand{\Regions}{\ensuremath{\mbox{\em $\mathcal{R}$}}\xspace} 
 \newcommand{\LivingDarts}{\ensuremath{\mbox{\em $\mathcal{BS}$}}\xspace}
-\newcommand{\NonLivingDarts}{\ensuremath{\mbox{\em $\mathcal{BN}$}}\xspace}
 \newcommand{\Vertices}{\ensuremath{\mbox{\em $\mathcal{S}$}}\xspace}
 \newcommand{\LivingVertices}{\ensuremath{\mbox{\em $\mathcal{SS}$}}\xspace}
 \newcommand{\NonLivingVertices}{\ensuremath{\mbox{\em $\mathcal{SN}$}}\xspace}
 \newcommand{\Edges}{\ensuremath{\mbox{\em $\mathcal{A}$}}\xspace}
 \newcommand{\Pointels}{\ensuremath{\mbox{\em $\mathcal{P}$}}\xspace}
 \newcommand{\Lignels}{\ensuremath{\mbox{\em $\mathcal{L}$}}\xspace}
-\newcommand{\LivingEdges}{\ensuremath{\mbox{\em $\mathcal{AS}$}}\xspace}
 \newcommand{\NonLivingEdges}{\ensuremath{\mbox{\em $\mathcal{AN}$}}\xspace}
-\newcommand{\OrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GO}$}}\xspace}
-\newcommand{\NonOrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GNO}$}}\xspace}
-\newcommand{\cells}[1]{\ensuremath{\mbox{\em $#1$-cellules}}}
-\newcommand{\cell}[1]{\ensuremath{\mbox{\em $#1$-cellule}}}
-\newcommand{\cycle}{\ensuremath{\mbox{\em $\pi$}}}
-
 \newcommand{\ReceptiveField}{\ensuremath{\mbox{\em $\mathcal{CR}$}}}
 \newcommand{\ConnectingWalk}{\ensuremath{\mbox{\em $\mathcal{CW}$}}}
 \newcommand{\ConnectingSequence}{\ensuremath{\mbox{\em $\mathcal{SC}$}}}
 \newcommand{\ProjectionStrip}{\ensuremath{\mbox{\em $\mathcal{BP}$}}\xspace}
 \newcommand{\Kernel}{\ensuremath{\mbox{\em $\mathcal{K}$}}}
+
+%unused
+%\newcommand{\Pixels}{\ensuremath{\mbox{\em $\mathcal{X}$}}\xspace} 
+%\newcommand{\OrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GO}$}}\xspace}
+%\newcommand{\NonOrientedGraph}{\ensuremath{\mbox{\em $\mathcal{GNO}$}}\xspace}
+%\newcommand{\LivingEdges}{\ensuremath{\mbox{\em $\mathcal{AS}$}}\xspace}
+%\newcommand{\NonLivingDarts}{\ensuremath{\mbox{\em $\mathcal{BN}$}}\xspace}
+
+\newcommand{\cells}[1]{\ensuremath{\mbox{\em $#1$-cellules}}}
+\newcommand{\cell}[1]{\ensuremath{\mbox{\em $#1$-cellule}}}
+\newcommand{\cycle}[1]{\ensuremath{\mbox{\em ${#1}^*$}}}
+\newcommand{\walk}[1]{\mbox{{\em $(#1)$}-chemin}}
+\newcommand{\walks}[1]{\mbox{{\em $(#1)$}-chemins}}
+%\newcommand{\cycle}{\ensuremath{\mbox{\em $\pi$}}}
+
 \newcommand{\ssi}{\ensuremath{\mbox{\em ~$\Leftrightarrow$~}}}
 \newcommand{\resp}{\emph{resp.}\xspace}
 \newcommand{\id}{\ensuremath{\mbox{\em $Id.$}}}
 \newcommand{\updown}{\emph{prédécesseur/successeur\xspace}}
 \newcommand{\etou}{et/ou\xspace}
-\newcommand{\command}[1]{{\mdseries\ttfamily\upshape#1}}
-\newcommand{\ligne}[1]{{\mdseries\ttfamily\upshape{ligne\,#1}}}
-\renewcommand{\unit}[1]{\,{\mdseries\ttfamily\upshape#1}}
+\newcommand{\command}[1]{\texttt{#1}}
+\newcommand{\ligne}[1]{\texttt{ligne\,#1}}
+\renewcommand{\unit}[1]{\texttt{#1}}
 \newcommand{\xpos}{\ensuremath{\mbox{\em x}}}
 \newcommand{\xneg}{\ensuremath{\mbox{\em -x}}}
 \newcommand{\ypos}{\ensuremath{\mbox{\em y}}}
 \newcommand{\yneg}{\ensuremath{\mbox{\em -y}}}
 \newcommand{\firstpixel}{\emph{premier pixel}\xspace}
+\newcommand{\DirectCast}[1]{\ensuremath{\mbox{\em $P_{direct}(#1)$}}}
 
 
 \makeatletter
@@ -244,15 +268,15 @@
 \def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}}
 
 
-\newcommand{\sizeof}[1]{\ensuremath{\mbox{\em taille(#1)}}}
+\newcommand{\sizeof}[1]{\ensuremath{\mbox{\em \texttt{taille(}#1\texttt{)}}}}
 \newcommand{\moy}{\ensuremath{\mbox{\em moy}}}
 \newcommand{\var}{\ensuremath{\mbox{\em var}}}
 \newcommand{\threshold}{\ensuremath{\mbox{\em seuil}}}
 \newcommand{\etal}[1]{#1~\emph{et~al.}}
-\newcommand{\cf}[1]{(voir~\refsec{#1})}
+\newcommand{\cf}[1]{(\refsec{#1})}
 
-\newcommand{\ram}[1]{{\mdseries\ttfamily\upshape ram}(#1)}
-\newcommand{\topo}{topologie}
+\newcommand{\ram}[1]{\texttt{ram(#1)}}
+\newcommand{\topo}{carte}
 \newcommand{\tree}{arbre}
 \newcommand{\geom}{géométrie}
 \newcommand{\tq}{~|~}

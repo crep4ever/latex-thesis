@@ -1,6 +1,7 @@
 %*******************************************************************************
 %Master document.
-%Build with make && makeindex -s style/index -o main.ind main.idx && make
+%Build with :
+% make && makeindex -s style/index -o main.ind main.idx && make
 %*******************************************************************************
 \makeatletter\def\input@path{{style/} {tex/} {bib/}}\makeatother
 %\documentclass[nb]{thesis}
@@ -17,9 +18,8 @@
 %-------------------------------------------------------------------------------
 % Préface
 %-------------------------------------------------------------------------------
-\maketitle
 \frontmatter
-%\include{abstract}
+\maketitle
 \dominitoc
 \tableofcontents
 
@@ -47,7 +47,7 @@
 \bibliography{bib/biblio} %
 
 % Liste des figures
-\addentry{toc}{chapter}{Table des figures}
+\addentry{toc}{chapter}{Liste des figures}
 \listoffigures
 
 % Liste des algorithmes
@@ -59,7 +59,7 @@
 \printindex
 
 % Backcover
-%\includet{backcover}
+\include{abstract}
 %*******************************************************************************
 \end{document}
 %*******************************************************************************
