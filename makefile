@@ -23,7 +23,7 @@
 
 ######################## Dépendances #################################
 #
-# latex, pdflatex, inkscape, xfig, imagemagick(convert)
+# latex, pdflatex, inkscape, makeindex, xfig, imagemagick(convert)
 #
 ######################################################################
 
@@ -81,6 +81,8 @@ ps: $(CIBLE).ps.gz
 
 pdf: LATEX = pdflatex
 pdf: $(CIBLE).pdf
+	makeindex -s style/index -o $(CIBLE).ind $(CIBLE).idx
+	$(LATEX) $(SOURCES)
 	evince $<
 
 cleansvg:
@@ -90,7 +92,7 @@ clean:
 	@rm -f $(AUX) $(CIBLE).toc
 	@rm -f $(CIBLE).dvi $(CIBLE).out $(CIBLE).log $(CIBLE).nav $(CIBLE).snm
 	@rm -f $(BIB) $(BIB:%.bbl=%.blg)
-	@rm -f *.aux *.log *.out
+	@rm -f *.aux $(CIBLE).log $(CIBLE).out $(CIBLE).lof $(CIBLE).idx $(CIBLE).ind $(CIBLE).loa $(CIBLE).ilg
 	@rm -f $(CIBLE).m*
 
 cleanps: clean
@@ -100,6 +102,8 @@ cleanpdf: clean
 	@rm -f $(PDF) $(GREY) $(CIBLE).pdf paper.pdf
 
 cleanall: cleanps cleanpdf
+
+distclean: cleanall
 
 ############################################################
 
