@@ -10,7 +10,7 @@
 \RequirePackage{inconsolata}
 \RequirePackage{lmodern}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[english,frenchb]{babel}
+\RequirePackage[frenchb,english]{babel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{type1cm}
 
