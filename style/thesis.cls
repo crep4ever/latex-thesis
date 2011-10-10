@@ -6,12 +6,13 @@
 \LoadClass[a4paper,twoside,12pt]{book}
 
 %font
+\RequirePackage{calligra}
+\RequirePackage{inconsolata}
+\RequirePackage{lmodern}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english,frenchb]{babel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{type1cm}
-\RequirePackage{lmodern}
-\RequirePackage{inconsolata}
 
 %index
 \RequirePackage[algo2e,ruled,vlined,french]{algorithm2e}
