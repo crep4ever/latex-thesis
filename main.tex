@@ -19,38 +19,33 @@
 %\frontmatter
 \maketitle
 \dominitoc
-%\include{remerciements}
 \tableofcontents
 
 %-------------------------------------------------------------------------------
 % Document
 %-------------------------------------------------------------------------------
 \include{hyphenation}
-%\mainmatter
+\mainmatter
 \include{introduction}
-\include{chapitre1}
-\include{chapitre2}
-\include{chapitre3}
-\include{chapitre4}
-\include{conclusion}
+\include{chapter1}
 
 %-------------------------------------------------------------------------------
-% Annexes
+% Appendices
 %-------------------------------------------------------------------------------
-%\backmatter
+\backmatter
 
 %Biblio
 \bibliographystyle{alpha} %
-\renewcommand{\bibname}{Références Bibliographiques} %
-\addentry{toc}{chapter}{Références Bibliographiques}
+\renewcommand{\bibname}{References} %
+\addentry{toc}{chapter}{References}
 \bibliography{bib/biblio} %
 
 % Liste des figures
-\addentry{toc}{chapter}{Liste des figures}
+\addentry{toc}{chapter}{List of figures}
 \listoffigures
 
 % Liste des algorithmes
-\addentry{toc}{chapter}{Liste des algorithmes}
+\addentry{toc}{chapter}{List of algorithms}
 \listofalgorithmes
 
 % Index
