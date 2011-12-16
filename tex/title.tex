@@ -1,0 +1,238 @@
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%% PAGE DE TITRE %%%%%%%%%%%%%%%%%%%%%%%%%
+
+% le numero d'identification
+\def\@nid{}
+\newcommand{\nid}[1]{
+\gdef\@nid{#1}}
+
+%%%% debut : \author
+\def\@author{}
+\def\@authorfirstname{}
+\def\@authorlastname{}
+\renewcommand{\author}[2]{
+  \gdef\@author{{#1} {#2}}
+  \gdef\@authorfirstname{#1}
+  \gdef\@authorlastname{#2}
+}%% fin : \author
+
+%%%% debut : \director
+\def\@director{}
+\def\@directorfirstname{}
+\def\@directorlastname{}
+\newcommand{\director}[2]{
+  \gdef\@director{{#1} {#2}}
+  \gdef\@directorfirstname{#1}
+  \gdef\@directorlastname{#2}
+}%% fin : \director
+
+%%%% debut : \directorAd
+\def\@directorAd{}
+\def\@directorfirstnameAd{}
+\def\@directorlastnameAd{}
+\newcommand{\directorAd}[2]{
+  \gdef\@directorAd{{#1} {#2}}
+  \gdef\@directorfirstnameAd{#1}
+  \gdef\@directorlastnameAd{#2}
+}%% fin : \directorAd
+
+%%%% debut : \academy
+\def\@academy{}
+\newcommand{\academy}[1] {
+  \gdef\@academy{#1}
+}%% fin : \academy
+
+%%%% debut : \university
+\def\@university{}
+\def\@universityother{}
+\def\@universityotherlong{}
+\newcommand{\university} [3] {
+  \def\@university{#1}
+  \def\@universityother{#2}
+  \def\@universityotherlong{#3}
+}%% fin : \university
+
+%%%% debut : \doctoralschool
+\def\@specialty{}
+\def\@doctoralschool{}
+\newcommand{\doctoralschool} [2] {
+  \gdef\@specialty{#1}
+  \gdef\@doctoralschool{#2}
+}%% fin : \doctoralschool
+
+%%%% debut : \@longtitle
+\def\@title{}
+\newcommand{\@longtitle}{
+  \ifthenelse{\equal{\@subtitle}{}}
+  { \begin{center}
+      \LARGE{\bf\@title}       
+    \end{center}}
+  { \begin{center}
+      \huge{\bf\@title}\par \vspace{\stretch{1}} \Large{\bf\@subtitle}
+    \end{center}}
+}%% fin : \@longtitle
+
+%%%% debut : \subtitle
+\def\@subtitle{}
+\newcommand{\subtitle}[1]{
+        \gdef\@subtitle{#1}
+}%% fin : \subtitle
+
+%%%% debut : \addjurydirth
+\def\@jurydirth{}
+\newcommand{\addjurydirth}[4]{
+    \xdef\@jurydirth {\@jurydirth \centerline{#1~#2, #3, #4 \dotfill Directeur de Th\`ese}}%
+}%% fin : \addjurydirth
+
+%%%% debut : \addjurycodirth
+\def\@jurycodirth{}
+\newcommand{\addjurycodirth}[4]{
+    \xdef\@jurycodirth {\@jurycodirth \centerline{#1~#2, #3, #4 \dotfill Co-encadrant de Th\`ese}}%
+}%% fin : \addjurycodirth
+
+%%%% debut : \addjuryrapport
+\def\@juryrapport{}
+\newcommand{\addjuryrapport}[4]{
+    \xdef\@juryrapport {\@juryrapport \centerline{#1~#2, #3, #4 \dotfill Rapporteur}}%
+  %  \vspace{.13cm}
+}%% fin : \addjuryrapport
+
+%%%% debut : \addjurypres
+\def\@jurypres{}
+\newcommand{\addjurypres}[4]{
+    \xdef\@jurypres {\@jurypres \centerline{#1~#2, #3, #4 \dotfill Pr\'esident du Jury}}%
+}%% fin : \addjurypres
+
+%%%% debut : \addjuryexam
+\def\@juryexam{}
+\newcommand{\addjuryexam}[4]{
+    \xdef\@juryexam {\@juryexam \centerline{#1~#2, #3, #4 \dotfill Examinateur}}%
+}%% fin : \addjuryexam
+
+%%%% debut : \addjuryinvit
+\def\@juryinvit{}
+\newcommand{\addjuryinvit}[4]{
+    \xdef\@juryinvit {\@juryinvit \centerline{#1~#2, #3, #4 \dotfill Invit\'e}}%
+}%% fin : \addjuryinvit
+
+%%%% debut : \@makethesisinfobanner
+\newcommand{\@makethesisinfobanner}{
+    \centerline{\huge \bf Thesis}%
+    \vspace{\stretch{4}}%
+    \centerline{ \large pour l'obtention du grade de}
+    \vspace{\stretch{1}}%
+    \centerline{ \LARGE \sc Docteur de l'\@universityotherlong}
+    \vspace{\stretch{1}}%
+    \centerline{ \large \textbf{\@universityother}}
+    \centerline{ \large (Dipl\^ome National -- Arr\^et\'e du 7 Ao\^ut 2006)}
+    \vspace{\stretch{2}}
+    {
+      \large
+      \begin{center}
+        \begin{tabular}{l@{~~:~~}l}
+          \emph{\'Ecole Doctorale}    & {\bf \@doctoralschool} \cr
+          \emph{Secteur de Recherche} & {\bf \@specialty}      \cr
+        \end{tabular} 
+      \end{center}
+    }
+}%% fin : \@makethesisinfobanner
+
+%%%% debut : \@makethesistitlebanner
+\newcommand{\@makethesistitlebanner}{
+   \centerline{\large pr\'esent\'ee par :}
+   \vspace{\stretch{2}}%
+   \centerline{\LARGE {\@authorfirstname} {\sc \@authorlastname}}
+   \vspace{\stretch{4}}%
+   \@longtitle
+   \vspace{\stretch{6}}%
+   \centerline{\large Directeurs de th\`ese :}
+   \vspace{\stretch{1}}%
+   \centerline{\Large {\@directorfirstname} {\sc \@directorlastname}}
+   \vspace{\stretch{1}}%
+   \centerline{\Large {\@directorfirstnameAd} {\sc
+       \@directorlastnameAd}}
+%   \vspace{\stretch{1}}%
+%   \centerline{\Large {\@directorfirstnameAdA} {\sc \@directorlastnameAdA}}
+
+}%% fin : \@makethesistitlebanner
+
+%%%% debut : \@makejurybanner
+\newcommand{\@makejurybanner}{
+  \begin{footnotesize}
+    \ifthenelse{\boolean{@soutenue}}%
+    {
+      \centerline{Soutenue le {\@date} devant le jury compos\'e de :}
+    }
+    {
+      \centerline{Soutenance pr\'evue le {\@date} devant le jury compos\'e de :}
+    }
+    \medskip
+    \ifthenelse{\equal{\@jurypres}{}}{}
+    {
+      \@for \@name := \@jurypres \do {\@name}%
+      \vspace{.13cm}
+    }%
+    \@for \@name := \@juryrapport \do {\@name}%
+    \vspace{.13cm}%
+    \@for \@name := \@juryexam \do {\@name}%
+    \vspace{.13cm}%
+    \@for \@name := \@jurydirth \do {\@name}%
+    \vspace{.13cm}%
+    \@for \@name := \@jurycodirth \do {\@name}%
+    \vspace{.13cm}%
+    \@for \@name := \@juryinvit \do {\@name}%
+  \end{footnotesize}
+}%% fin : \@makejurybanner
+
+%%%% debut : \@makethesistitle
+\newcommand{\@makethesistitle}{
+  \begin{titlepage}
+    \ifthenelse{\equal{\@nid}{}}{}
+    {
+      {\footnotesize Num\'ero d'identification :}~\@nid\hfill\hfill\par
+      \vspace{.8cm}
+    }
+    
+    \@makethesisinfobanner
+    \vspace{\stretch{8}}
+    
+    \@makethesistitlebanner
+    
+    \vspace{\stretch{10}}
+    \@makejurybanner
+  \end{titlepage}
+}%% fin : \@makethesistitle
+
+%%%% debut : \maketitle
+\renewcommand{\maketitle}{
+  \@makethesistitle
+  \thispagestyle{empty}
+  \newpage
+}%% fin :\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%FIN PAGE DE TITRE %%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\LaTeX{} thesis template}
+
+\author{Firstname}{Lastname}
+
+\director{Some}{One}
+\directorAd{Some}{Body}
+
+\academy{Somewhere} 
+
+\university{Université de \dots}
+           {Facult\'e des Sciences Fondamentales et Appliqu\'ees}
+           {Université de \dots}
+
+\doctoralschool{Informatique}
+               {Sciences}
+
+\date{\today}
+%%%%%%%%%%%% Jury %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addjuryrapport{Firstname}{Lastname}{Professor}{University}%
+\addjuryexam{Firstname}{Lastname}{Professor}{University}%
+\addjurydirth{Firstname}{Lastname}{Professor}{University}%
+%\addjurypres{}{}{}%
+
+\makeatother

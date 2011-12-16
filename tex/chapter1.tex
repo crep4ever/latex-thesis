@@ -1,0 +1,121 @@
+%*******************************************************************************
+%*******************************************************************************
+\chapter{State of the art}
+\setcounter{chapter}{1}
+\label{chap:state-of-the-art}
+\minitoc
+\fancyhead[RE]{\textit{Chapter \arabic{chapter}.~\nouppercase{\leftmark}}}
+\fancyhead[LO]{\textit{\arabic{chapter}.\arabic{section}.~\nouppercase{\rightmark}}}
+%*******************************************************************************
+%*******************************************************************************
+
+%*******************************************************************************
+\section{First section}
+%*******************************************************************************
+
+\index{lorem}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+%-------------------------------------------------------------------------------
+\subsection{First subsection}
+\label{sec:image}
+%-------------------------------------------------------------------------------
+
+\index{ipsum}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\FigSpacing}{.04\textwidth}
+\setlength{\FigWidth}{.20\textwidth}
+\begin{figure}
+  \centering
+  %% -- subfigures --
+  \subfigure[]{
+    \label{fig:lena-a}
+    \image{lena-a}%
+  }%
+  \hspace{\FigSpacing}%
+  \subfigure[]{%
+    \label{fig:lena-b}%
+    \image{lena-b}%
+  }%
+  \hspace{\FigSpacing}%
+  \subfigure[]{%
+    \label{fig:lena-c}%
+    \image{lena-c}%
+  }%
+  %% -- subfigures --
+  \caption[Lena]{%
+    Three subpictures of the Lena image. %
+    \subref{fig:lena-a}~Lena 1~; %
+    \subref{fig:lena-b}~Lena 2~; %
+    \subref{fig:lena-c}~Lena 3. %
+  }%
+  \label{fig:lena}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\FigSpacing}{.04\textwidth}
+\setlength{\FigWidth}{.50\textwidth}
+\begin{figure}
+  \centering \image{varietes}
+  \caption[Möbius strip]{%
+    The Möbius strip.%
+  }%
+  \label{fig:varietes}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-------------------------------------------------------------------------------
+\subsection{Second subsection}
+\label{sec:algo}
+%-------------------------------------------------------------------------------
+
+\index{lorem!ipsum}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ALGORITHM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm2e}%
+  \Donnees{An integer $n$}
+  \Res{The sum of the first $n$ integer.}
+  res $\gets 0$\;
+  \Pour{ $i=1$ \emph{to} $n$}{
+    $res \gets res + i$\;
+  }
+  \caption[Highly inefficient algorithm]{Inefficient algorithm}%
+  \label{algo:sum}%
+\end{algorithm2e}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%*******************************************************************************
+\section{Last section}
+%*******************************************************************************
+
+This template has been written for personnal needs during my thesis \cite{Goffe11}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../main"
+%%% End: 
